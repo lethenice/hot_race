@@ -89,10 +89,12 @@ void	sub_t_search(t_search *head, t_search **t1, t_search **t2)
 	int i;
 
 	i = 0;
-	*t1 = new_t_search(head->next[head->nb_next / 2 - 1]->keyword, head->next[head->nb_next / 2 - 1]->value);
+	*t1 = new_t_search(head->next[head->nb_next / 2 - 1]->keyword,
+		head->next[head->nb_next / 2 - 1]->value);
 	(*t1)->before = head;
 	(*t1)->is_leef = 1;
-	*t2 = new_t_search(head->next[head->nb_next - 1]->keyword, head->next[head->nb_next - 1]->value);
+	*t2 = new_t_search(head->next[head->nb_next - 1]->keyword,
+		head->next[head->nb_next - 1]->value);
 	(*t2)->is_leef = 1;
 	(*t2)->before = head;
 	while (i < head->nb_next - 1)

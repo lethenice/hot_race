@@ -21,7 +21,7 @@ void     read_standard()
     {
         if (ft_strcmp(line, "") == 0)
         {
-        	while (get_next_line(0, &line) > 0)
+			while (get_next_line(0, &line) > 0)
 			{
 				ft_putstr(line);
 				ft_putstr(find_value(the_head, line));
@@ -31,8 +31,8 @@ void     read_standard()
         }
         else if ((i % 2) != 0)
         {
-        	insert_new(the_head , new_t_search(key, line));
-        	print_t_search(the_head);
+			insert_new(the_head , new_t_search(key, line));
+			print_t_search(the_head);
 			ft_putstr("_____________________________\n");
             free(key);
         }
@@ -86,12 +86,8 @@ char    *find_value(t_search *head, char *keyword)
 	{
 		while (i < head->nb_next)
 		{
-			if (ft_strcmp(head->next[i]->keyword, keyword) == 0)
-				return (head->next[i]->value);
-			else
-			{
-				find_value(head->next[i], keyword);
-			}
+			if (ft_strcmp(head->next[i]->keyword, keyword) <= 0)
+				return (find_value(head->next[i], keyword));
 			i++;
 		}
 	}
