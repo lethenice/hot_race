@@ -27,6 +27,7 @@ void		read_standard();
 char		*find_value(t_search *head, char *keyword);
 void		insert_new(t_search *head, t_search *new);
 void		insert_tab(t_search *head, t_search *new);
+void		read_search(t_search *head, char *line);
 void		move_elem(t_search **tab,int i, int nb);
 t_search	*new_t_search(char *key, char *val);
 void		split_t_search(t_search *head);

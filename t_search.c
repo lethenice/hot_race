@@ -23,8 +23,8 @@ void    insert_new(t_search *head, t_search *new)
 
 void    insert_tab(t_search *head, t_search *new)
 {
-	int     i;
-	int     exit;
+	int		i;
+	int		exit;
 
 	i = 0;
 	exit = 1;
@@ -37,7 +37,7 @@ void    insert_tab(t_search *head, t_search *new)
 			split_t_search(head);
 			insert_new(the_head, new);
 			return;
-		}		
+		}
 		while (i <= head->nb_next && exit)
 		{
 			if (i == head->nb_next)
@@ -56,11 +56,11 @@ void    insert_tab(t_search *head, t_search *new)
 				exit = 0;
 			}
 			i++;
-		}   
+		}
 	}
 }
 
-void    move_elem(t_search **tab, int i, int nb)
+void	move_elem(t_search **tab, int i, int nb)
 {
 	while (nb > i)
 	{
@@ -69,10 +69,10 @@ void    move_elem(t_search **tab, int i, int nb)
 	}
 }
 
-void    split_t_search(t_search *head)
+void	split_t_search(t_search *head)
 {
-	t_search    *t1;
-	t_search    *t2;
+	t_search	*t1;
+	t_search	*t2;
 	t_search	*tmp;
 
 	tmp = head->next[head->nb_next / 2];
@@ -84,7 +84,7 @@ void    split_t_search(t_search *head)
 	free(head);
 }
 
-void    sub_t_search(t_search *head, t_search **t1, t_search **t2)
+void	sub_t_search(t_search *head, t_search **t1, t_search **t2)
 {
 	int i;
 

@@ -10,23 +10,32 @@ void     read_standard()
     char        *key;
     t_search    *head;
     int         i;
-    int         exit;
+    int			out;
 
     i = 0;
-    exit = 1;
+    out = 1;
     head = new_t_search(NULL, NULL);
     the_head = head;
     the_head->is_leef = 1;
-    while (get_next_line(0, &line) > 0 && exit)
+    while (get_next_line(0, &line) > 0 && out)
     {
-        if (ft_strcmp(line, "\n") == 0)
-            exit = 0;
+        if (ft_strcmp(line, "") == 0)
+        {
+        	while (get_next_line(0, &line) > 0)
+			{
+				ft_putstr(line);
+				ft_putstr(find_value(the_head, line));
+				ft_putstr("\n");
+			}
+			out = 0;
+        }
         else if ((i % 2) != 0)
-		{
-			insert_new(the_head , new_t_search(key, line));
-			print_t_search(the_head);
+        {
+        	insert_new(the_head , new_t_search(key, line));
+        	print_t_search(the_head);
 			ft_putstr("_____________________________\n");
-		}
+            free(key);
+        }
 		else
         {
             key = (char*)malloc(sizeof(char) * ft_strlen(line) + 1);
@@ -34,6 +43,15 @@ void     read_standard()
         }
         i++;
     }
+}
+
+void	read_search(t_search *head, char *line)
+{
+	while (get_next_line(0, &line) > 0)
+	{
+		ft_putstr(find_value(head, line));
+		ft_putstr("\n");
+	}
 }
 
 void	print_t_search(t_search *head)
@@ -59,6 +77,7 @@ void	print_t_search(t_search *head)
 	}
 }
 
+
 char    *find_value(t_search *head, char *keyword)
 {
     int i;
@@ -68,8 +87,13 @@ char    *find_value(t_search *head, char *keyword)
     {
         while (i < head->nb_next)
         {
-            if (ft_strcmp(head->next[i]->keyword, keyword) >= 0)
-                find_value(head->next[i], keyword);
+        	if (ft_strcmp(head->next[i]->keyword, keyword) == 0)
+        		return (head->next[i]->value);
+        	else
+        	{
+            	ft_putstr(head->next[i]->keyword);
+            	find_value(head->next[i], keyword);
+            }
             i++;
         }
     }
