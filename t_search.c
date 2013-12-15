@@ -8,6 +8,11 @@ void	insert_new(t_search *head, t_search *new)
 	i = 0;
 	if (head->is_leef == 1)
 		insert_tab(head, new);
+	else if (ft_strcmp(head->keyword, new->keyword) < 0)
+	{
+		swap_t_search(head, new);
+		insert_new(head, new);
+	}
 	else
 	{
 		while (i < head->nb_next)
@@ -15,11 +20,28 @@ void	insert_new(t_search *head, t_search *new)
 			if (ft_strcmp(((head->next)[i])->keyword, new->keyword) > 0)
 			{
 				insert_new(head->next[i], new);
-				i = head->nb_next;
+				i = head->nb_next + 1;
 			}
 			i++;
 		}
+		if (i == head->nb_next)
+		{
+			swap_t_search(head->next[i - 1], new);
+			insert_new(head, new);
+		}
 	}
+}
+
+void	swap_t_search(t_search *a, t_search *b)
+{
+	char	*tmp;
+
+	tmp = a->keyword;
+	a->keyword = b->keyword;
+	b->keyword = tmp;
+	tmp = a->value;
+	a->value = b->value;
+	b->value = tmp;
 }
 
 void	insert_tab(t_search *head, t_search *new)
@@ -77,7 +99,7 @@ void	split_t_search(t_search *head)
 	t_search	*t2;
 	t_search	*tmp;
 
-	tmp = head->next[head->nb_next / 2];
+	tmp = head->next[head->nb_next - 1];
 	sub_t_search(head, &t1, &t2);
 	tmp->nb_next = 2;
 	tmp->next[0] = t1;
@@ -95,7 +117,7 @@ void	sub_t_search(t_search *head, t_search **t1, t_search **t2)
 		head->next[head->nb_next / 2 - 1]->value);
 	(*t1)->before = head;
 	(*t1)->is_leef = 1;
-	*t2 = new_t_search(head->next[head->nb_next - 1]->keyword,
+	*t2 = new_t_search(head->next[head->nb_next - 2]->keyword,
 		head->next[head->nb_next - 1]->value);
 	(*t2)->is_leef = 1;
 	(*t2)->before = head;
@@ -106,9 +128,9 @@ void	sub_t_search(t_search *head, t_search **t1, t_search **t2)
 			(*t1)->next[i] = head->next[i];
 			(*t1)->nb_next++;
 		}
-		else if (i > head->nb_next / 2)
+		else if (i > head->nb_next / 2 - 1)
 		{
-			(*t2)->next[i - 1 - head->nb_next / 2] = head->next[i];
+			(*t2)->next[i - head->nb_next / 2] = head->next[i];
 			(*t2)->nb_next++;
 		}
 		i++;
