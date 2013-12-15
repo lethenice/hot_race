@@ -77,29 +77,27 @@ void	print_t_search(t_search *head)
 	}
 }
 
-
 char    *find_value(t_search *head, char *keyword)
 {
-    int i;
+	int		i;
 
-    i = 0;
-    if (ft_strcmp(head->keyword, keyword) != 0)
-    {
-        while (i < head->nb_next)
-        {
-        	if (ft_strcmp(head->next[i]->keyword, keyword) == 0)
-        		return (head->next[i]->value);
-        	else
-        	{
-            	ft_putstr(head->next[i]->keyword);
-            	find_value(head->next[i], keyword);
-            }
-            i++;
-        }
-    }
-    else
-        return (head->value);
-    return (NULL);
+	i = 0;
+	if (ft_strcmp(head->keyword, keyword) != 0)
+	{
+		while (i < head->nb_next)
+		{
+			if (ft_strcmp(head->next[i]->keyword, keyword) == 0)
+				return (head->next[i]->value);
+			else
+			{
+				find_value(head->next[i], keyword);
+			}
+			i++;
+		}
+	}
+	else
+		return (head->value);
+	return (NULL);
 }
 
 t_search    *new_t_search(char *key, char *val)
