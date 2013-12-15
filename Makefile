@@ -3,6 +3,7 @@ NAME = hotrace
 SRC = get_next_line.c ft_strdup.c ft_memcpy.c ft_strlen.c ft_putchar.c  \
 	ft_putstr.c ft_strcmp.c\
 	main.c  t_search.c \
+	get_value.c \
 
 OBJ = $(SRC:.c=.o)
 

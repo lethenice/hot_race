@@ -17,8 +17,9 @@ typedef struct		s_search
 
 t_search	*the_head;
 
-void	reduce_t_search(t_search *head);
-void	swap_t_search(t_search *a, t_search *b);
+void		reduce_t_search(t_search *head);
+void		swap_t_search(t_search *a, t_search *b);
+void		define_thehead(t_search *head, char *line, char *key);
 void		ft_putstr(const char *s);
 int			ft_strcmp(const char *s1, const char *s2);
 void		ft_putchar(char c);

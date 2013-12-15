@@ -8,11 +8,7 @@ void     read_standard()
 	char		*line;
 	char		*key;
 	t_search	*head;
-	int			i;
-	int			out;
 
-	i = 0;
-	out = 1;
 	head = new_t_search(NULL, NULL);
 	the_head = head;
 	the_head->is_leef = 1;
@@ -23,25 +19,21 @@ void     read_standard()
 	insert_new(the_head, head);
 	the_head->is_leef = 0;
 	head->is_leef = 1;
-	while (get_next_line(0, &line) > 0 && out)
+	define_thehead(the_head, line, key);
+}
+
+void	define_thehead(t_search *head, char *line, char *key)
+{
+	int		i;
+
+	i = 0;
+	while (get_next_line(0, &line) > 0)
 	{
-		ft_putstr("**line: ");
-		ft_putstr(line);
-		ft_putchar('\n');
 		if (ft_strcmp(line, "") == 0)
-		{
-			while (get_next_line(0, &line) > 0)
-			{
-				ft_putstr(line);
-				ft_putstr(find_value(the_head, line));
-				ft_putstr("\n");
-			}
-		}
+			read_search(head, line);
 		else if ((i % 2) != 0)
 		{
-			insert_new(the_head , new_t_search(key, line));
-		//	print_t_search(the_head);
-		//	ft_putstr("_____________________________\n");
+			insert_new(head , new_t_search(key, line));
 			free(key);
 		}
 		else
@@ -54,7 +46,13 @@ void	read_search(t_search *head, char *line)
 {
 	while (get_next_line(0, &line) > 0)
 	{
-		ft_putstr(find_value(head, line));
+		if (find_value(head, line) == NULL)
+		{
+			ft_putstr(line);
+			ft_putstr(": Not found.");
+		}
+		else
+			ft_putstr(find_value(head, line));
 		ft_putstr("\n");
 	}
 }
@@ -80,50 +78,6 @@ void	print_t_search(t_search *head)
 		print_t_search(head->next[i]);
 		i++;
 	}
-}
-
-char    *find_value(t_search *head, char *keyword)
-{
-	int		i;
-
-	i = 0;
-	if (ft_strcmp(head->keyword, keyword) != 0)
-	{
-		while (i < head->nb_next)
-		{
-			if (ft_strcmp(head->next[i]->keyword, keyword) >= 0)
-				return (find_value(head->next[i], keyword));
-			i++;
-		}
-	}
-	else
-		return (head->value);
-	return (NULL);
-}
-
-t_search    *new_t_search(char *key, char *val)
-{
-	t_search    *new;
-
-	new = (t_search *)malloc(sizeof(t_search));
-	if (new != NULL)
-	{
-		if (key == NULL)
-		{
-			new->keyword = NULL;
-			new->value = NULL;
-		}
-		else
-		{
-			new->keyword = ft_strdup(key);
-			new->value = ft_strdup(val);
-		}
-		new->next = malloc(sizeof(t_search *) * MAX_SIZE);
-		new->nb_next = 0;
-		new->is_leef = 0;
-		new->before = NULL;
-	}
-	return (new);
 }
 
 int		main()
