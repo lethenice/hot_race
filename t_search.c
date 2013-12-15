@@ -2,6 +2,7 @@
 
 void	insert_new(t_search *head, t_search *new)
 {
+	ft_putstr("insert");
 	int i;
 
 	i = 0;
@@ -34,6 +35,7 @@ void	insert_tab(t_search *head, t_search *new)
 	{
 		if (head->nb_next == MAX_SIZE)
 		{
+			ft_putstr("rotation");
 			split_t_search(head);
 			insert_new(the_head, new);
 			return;
