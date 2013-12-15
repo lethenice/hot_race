@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "hotrace.h"
-#define MAX_SIZE 7
 
 int		get_next_line(int const fd, char **line);
 

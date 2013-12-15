@@ -2,15 +2,19 @@
 
 void	insert_new(t_search *head, t_search *new)
 {
-	ft_putstr("insert");
 	int i;
 
 	i = 0;
-	if (head->is_leef == 1)
+	if (ft_strcmp(head->keyword, new->keyword) == 0)
+	{
+		//free(head->value);
+		//head->value = new->value;
+		//free(new);
+	}
+	else if (head->is_leef == 1)
 		insert_tab(head, new);
 	else if (ft_strcmp(head->keyword, new->keyword) < 0)
 	{
-		ft_putstr("swap de head");
 		swap_t_search(head, new);
 		insert_new(head, new);
 	}
@@ -18,7 +22,7 @@ void	insert_new(t_search *head, t_search *new)
 	{
 		while (i < head->nb_next)
 		{
-			if (ft_strcmp(((head->next)[i])->keyword, new->keyword) > 0)
+			if (ft_strcmp(((head->next)[i])->keyword, new->keyword) >= 0)
 			{
 				insert_new(head->next[i], new);
 				i = head->nb_next + 1;
@@ -54,7 +58,6 @@ void	insert_tab(t_search *head, t_search *new)
 	exit = 1;
 	if (head->nb_next == MAX_SIZE)
 	{
-		ft_putstr("rotation");
 		split_t_search(head);
 		insert_new(the_head, new);
 		return;
@@ -67,6 +70,12 @@ void	insert_tab(t_search *head, t_search *new)
 			new->before = head;
 			head->nb_next++;
 			exit = 0;
+		}
+		else if (ft_strcmp(new->keyword, (head->next[i])->keyword) == 0)
+		{
+			//free((head->next[i])->value);
+			//(head->next[i])->value = new->value;
+			//free(new->value);
 		}
 		else if (ft_strcmp(new->keyword, (head->next[i])->keyword) < 0)
 		{
@@ -104,12 +113,12 @@ void	reduce_t_search(t_search *head)
 	int		i;
 
 	i = 0;
-	while (i < head->nb_next / 2)
+	while (i < MAX_SIZE / 2)
 	{
-		head->next[i] = head->next[i + 4];
+		head->next[i] = head->next[i + MAX_SIZE / 2 + 1];
 		i++;
 	}
-	head->nb_next = 3;
+	head->nb_next = MAX_SIZE / 2;
 }
 
 void	sub_t_search(t_search *head, t_search **t1)
