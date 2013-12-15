@@ -85,7 +85,7 @@ char    *find_value(t_search *head, char *keyword)
 	{
 		while (i < head->nb_next)
 		{
-			if (ft_strcmp(head->next[i]->keyword, keyword) <= 0)
+			if (ft_strcmp(head->next[i]->keyword, keyword) >= 0)
 				return (find_value(head->next[i], keyword));
 			i++;
 		}
