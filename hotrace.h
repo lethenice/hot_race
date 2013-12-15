@@ -17,6 +17,8 @@ typedef struct		s_search
 
 t_search	*the_head;
 
+void	what_branch(t_search *head, t_search *new);
+void	sub_insert(t_search *head, t_search *new, int i, int *exit);
 void		reduce_t_search(t_search *head);
 void		swap_t_search(t_search *a, t_search *b);
 void		define_thehead(t_search *head, char *line, char *key);
