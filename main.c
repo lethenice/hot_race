@@ -17,6 +17,13 @@ void     read_standard()
 	head = new_t_search(NULL, NULL);
 	the_head = head;
 	the_head->is_leef = 1;
+	get_next_line(0, &line);
+	key = ft_strdup(line);
+	get_next_line(0, &line);
+	head = new_t_search(key, line);
+	insert_new(the_head, head);
+	the_head->is_leef = 0;
+	head->is_leef = 1;
 	while (get_next_line(0, &line) > 0 && out)
 	{
 		ft_putstr("**line: ");
