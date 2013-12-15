@@ -58,21 +58,21 @@ void	what_branch(t_search *head, t_search *new)
 void	insert_tab(t_search *head, t_search *new)
 {
 	int		i;
-	int		exit;
+	int		out;
 
 	i = 0;
-	exit = 1;
-	if (head->nb_next == MAX_SIZE)
+	out = 1;
+	if (head->nb_next == MAX_SIZE && out)
 	{
 		split_t_search(head);
 		insert_new(the_head, new);
-		return;
+		out = 0;
 	}
-	while (i <= head->nb_next && exit)
+	while (i <= head->nb_next && out)
 	{
 		if (i == head->nb_next
 			|| ft_strcmp(new->keyword, (head->next[i])->keyword) < 0)
-			sub_insert(head, new, i, &exit);
+			sub_insert(head, new, i, &out);
 		else if (ft_strcmp(new->keyword, (head->next[i])->keyword) == 0)
 			(head->next[i])->value = new->value;
 		i++;

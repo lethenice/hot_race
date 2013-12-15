@@ -55,11 +55,11 @@ void	reduce_t_search(t_search *head)
 	head->nb_next = MAX_SIZE / 2;
 }
 
-void	sub_insert(t_search *head, t_search *new, int i, int *exit)
+void	sub_insert(t_search *head, t_search *new, int i, int *out)
 {
 	move_elem(head->next, i, head->nb_next);
 	head->next[i] = new;
 	new->before = head;
 	head->nb_next++;
-	*exit = 0;
+	*out = 0;
 }
