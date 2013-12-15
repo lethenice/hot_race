@@ -6,10 +6,10 @@ int		get_next_line(int const fd, char **line);
 
 void     read_standard()
 {
-	char        *line;
-	char        *key;
-	t_search    *head;
-	int         i;
+	char		*line;
+	char		*key;
+	t_search	*head;
+	int			i;
 	int			out;
 
 	i = 0;
@@ -39,8 +39,8 @@ void     read_standard()
 		{
 			key = (char*)malloc(sizeof(char) * ft_strlen(line) + 1);
 			key = line;
+			i++;
 		}
-		i++;
 	}
 }
 
@@ -63,7 +63,7 @@ void	print_t_search(t_search *head)
 	i = 0;
 	while (i < head->nb_next)
 	{
-		ft_putstr(head->next[i]->keyword);
+		ft_putstr((head->next[i])->keyword);
 		ft_putchar(' ');
 		i++;
 	}
@@ -85,7 +85,7 @@ char    *find_value(t_search *head, char *keyword)
 	{
 		while (i < head->nb_next)
 		{
-			if (ft_strcmp(head->next[i]->keyword, keyword) <= 0);
+			if (ft_strcmp(head->next[i]->keyword, keyword) <= 0)
 				return (find_value(head->next[i], keyword));
 			i++;
 		}
