@@ -1,6 +1,6 @@
 #include "hotrace.h"
 
-void    insert_new(t_search *head, t_search *new)
+void	insert_new(t_search *head, t_search *new)
 {
 	int i;
 
@@ -21,7 +21,7 @@ void    insert_new(t_search *head, t_search *new)
 	}
 }
 
-void    insert_tab(t_search *head, t_search *new)
+void	insert_tab(t_search *head, t_search *new)
 {
 	int		i;
 	int		exit;
