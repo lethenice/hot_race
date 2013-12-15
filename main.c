@@ -19,6 +19,9 @@ void     read_standard()
 	the_head->is_leef = 1;
 	while (get_next_line(0, &line) > 0 && out)
 	{
+		ft_putstr("**line: ");
+		ft_putstr(line);
+		ft_putchar('\n');
 		if (ft_strcmp(line, "") == 0)
 		{
 			while (get_next_line(0, &line) > 0)
@@ -36,11 +39,8 @@ void     read_standard()
 			free(key);
 		}
 		else
-		{
-			key = (char*)malloc(sizeof(char) * ft_strlen(line) + 1);
-			key = line;
-			i++;
-		}
+			key = ft_strdup(line);
+		i++;
 	}
 }
 
