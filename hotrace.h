@@ -3,6 +3,7 @@
 # define BUFF_SIZE 1024
 # define MAX_SIZE 7
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct		s_search
 {
@@ -16,6 +17,11 @@ typedef struct		s_search
 
 t_search	*the_head;
 
+void		ft_putstr(const char *s);
+int			ft_strcmp(const char *s1, const char *s2);
+void		ft_putchar(char c);
+size_t		ft_strlen(const char *s);
+void		*ft_memcpy(void *s1, const void *s2, size_t n);
 char		*ft_strdup(const char *s1);
 void		read_standard();
 char		*find_value(t_search *head, char *keyword);

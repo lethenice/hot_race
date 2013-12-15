@@ -3,7 +3,6 @@
 void    insert_new(t_search *head, t_search *new)
 {
 	int i;
-	int cmp;
 
 	i = 0;
 	if (head->is_leef == 1)
