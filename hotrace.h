@@ -1,7 +1,7 @@
 #ifndef __HOT_RACE_H__
 # define __HOT_RACE_H__
 # define BUFF_SIZE 1024
-# define MAX_SIZE 201
+# define MAX_SIZE 301
 # include <stdlib.h>
 # include <unistd.h>
 

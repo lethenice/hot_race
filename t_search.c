@@ -8,7 +8,7 @@ void	insert_new(t_search *head, t_search *new)
 	if (ft_strcmp(head->keyword, new->keyword) == 0)
 	{
 		//free(head->value);
-		//head->value = new->value;
+		head->value = new->value;
 		//free(new);
 	}
 	else if (head->is_leef == 1)
@@ -74,7 +74,7 @@ void	insert_tab(t_search *head, t_search *new)
 		else if (ft_strcmp(new->keyword, (head->next[i])->keyword) == 0)
 		{
 			//free((head->next[i])->value);
-			//(head->next[i])->value = new->value;
+			(head->next[i])->value = new->value;
 			//free(new->value);
 		}
 		else if (ft_strcmp(new->keyword, (head->next[i])->keyword) < 0)

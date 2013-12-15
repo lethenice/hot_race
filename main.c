@@ -40,8 +40,8 @@ void     read_standard()
 		else if ((i % 2) != 0)
 		{
 			insert_new(the_head , new_t_search(key, line));
-			print_t_search(the_head);
-			ft_putstr("_____________________________\n");
+		//	print_t_search(the_head);
+		//	ft_putstr("_____________________________\n");
 			free(key);
 		}
 		else
